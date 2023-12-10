@@ -1,0 +1,37 @@
+#ifndef CAMERA_H
+#define CAMERA_H
+
+#include "graphics_headers.h"
+
+#define CAM_FORWARD 1
+#define CAM_BACKWARD 2
+#define CAM_LEFT 3
+#define CAM_RIGHT 4
+
+class Camera
+{
+  public:
+    Camera();
+    ~Camera();
+    bool Initialize(int w, int h);
+    //void Update(glm::vec3 pan);
+    //void Update(double dX, double dY);
+    void Move(int direction);
+    void Rotate(double dX, double dY);
+    void Zoom(double dY);
+    glm::mat4 GetProjection();
+    glm::mat4 GetView();
+
+  
+  private:
+    int width, height;
+    float FoV;
+    glm::vec3 focalPoint;
+    glm::vec3 cameraPos;
+    glm::vec3 cameraFront;
+    glm::vec3 cameraUp;
+    glm::mat4 projection;
+    glm::mat4 view;
+};
+
+#endif /* CAMERA_H */
