@@ -26,6 +26,8 @@ bool Camera::Initialize(int w, int h)
     FoV = 40.f;
     width = w;
     height = h;
+    yaw = 90.0f;
+    pitch = 0.0f;
 
   //view = glm::lookAt(cameraPos, focalPoint, cameraUp);
   view = glm::lookAt(cameraPos, cameraFront + cameraPos, cameraUp);
@@ -68,16 +70,29 @@ void Camera::Move(int direction) {
     }
 
     cameraPos += moveVec * 0.1f;
-    focalPoint += moveVec * 0.1f;
 
-    view = glm::lookAt(cameraPos, focalPoint, cameraUp);
+    //view = glm::lookAt(cameraPos, focalPoint, cameraUp);
+    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
 void Camera::Rotate(double dX, double dY) {
-    //cameraFront.x += (float)dX * 0.1f;
-    //cameraFront.y += (float)dY * 0.1f;
+    yaw += dX;
+    pitch += dY;
 
-    //view = glm::lookAt(cameraPos, cameraFront + cameraPos, cameraUp);
+    if(pitch > 89.0f) {
+        pitch = 89.0f;
+    }
+    if (pitch < -89.0f) {
+        pitch = -89.0f;
+    }
+
+    glm::vec3 front;
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(pitch));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+
+    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
 void Camera::Zoom(double dY) {
