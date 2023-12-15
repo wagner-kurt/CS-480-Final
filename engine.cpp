@@ -30,7 +30,7 @@ bool Engine::Initialize()
     printf("The window failed to initialize.\n");
     return false;
   }
-
+  glfwSetInputMode(m_window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   // Start the graphics
   m_graphics = new Graphics();
   if(!m_graphics->Initialize(m_WINDOW_WIDTH, m_WINDOW_HEIGHT))
@@ -69,7 +69,7 @@ void Engine::ProcessInput()
     // Update camera animation here.
     //obtain and store mouse position
     glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
-    double dX = mouseX - prevMouseX;
+    double dX = -(mouseX - prevMouseX);
     double dY = mouseY - prevMouseY;
     
     //move camera inputs
@@ -81,6 +81,11 @@ void Engine::ProcessInput()
         m_graphics->getCamera()->Move(CAM_LEFT);
     if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
         m_graphics->getCamera()->Move(CAM_RIGHT);
+
+    //set sensitivity here
+    float sensitivity = 0.1f;
+    dX *= sensitivity;
+    dY *= sensitivity;
 
     //rotate camera inputs if difference in mouse position detected
     if (dX != 0.0 || dY != 0.0) {

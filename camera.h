@@ -32,6 +32,8 @@ class Camera
     glm::vec3 cameraUp;
     glm::mat4 projection;
     glm::mat4 view;
+    float pitch;
+    float yaw;
 };
 
 #endif /* CAMERA_H */

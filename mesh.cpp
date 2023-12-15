@@ -38,7 +38,7 @@ Mesh::Mesh(glm::vec3 pivot, const char* fname)
 Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname)
 {
 	// load texture from file
-	m_texture = new Texture(tname);
+	m_texture = new Texture(tname, "");
 	if (m_texture) {
 		std::cout << "mesh has texture\n";
 		hasTex = true;
@@ -62,6 +62,32 @@ Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname)
 	
 }
 
+Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname, const char* nname) {
+	// load texture from file
+	m_texture = new Texture(tname, nname);
+	if (m_texture) {
+		std::cout << "mesh has texture\n";
+		hasTex = true;
+	}
+	else {
+		hasTex = false;
+	}
+
+	// Vertex Set Up
+	loadModelFromFile(fname);
+
+	// Model Set Up
+	angle = 0.0f;
+	pivotLocation = pivot;
+	model = glm::translate(glm::mat4(1.0f), pivotLocation);
+
+	// Buffer Set Up
+	if (!InitBuffers()) {
+		printf("some buffers not initialized.\n");
+	}
+
+
+}
 
 Mesh::~Mesh()
 {

@@ -29,6 +29,24 @@ Sphere::Sphere(int prec, const char* fname) { // prec is precision, or number of
     if (m_texture) {
         std::cout << "sphere has texture\n";
         hasTex = true;
+    }
+    else {
+        hasTex = false;
+    }
+}
+
+Sphere::Sphere(int prec, const char* fname, const char* nname) { // prec is precision, or number of slices
+
+    init(prec);
+    setupVertices();
+    setupBuffers();
+    setupModelMatrix(glm::vec3(0., 0., 0.), 0., 1.);
+
+    // load texture from file
+    m_texture = new Texture(fname, nname);
+    if (m_texture) {
+        std::cout << "sphere has texture\n";
+        hasTex = true;
     } else {
         hasTex = false;
     }

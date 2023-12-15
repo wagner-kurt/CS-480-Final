@@ -7,12 +7,16 @@ class Texture
 
 public:
 	Texture();
-	Texture(const char* fileName);
+	Texture(const char* texFileName);
+	Texture(const char* texFileName, const char* normFileName);
 	bool loadTexture(const char* texFile);
+	bool loadNormal(const char* normFile);
 	GLuint getTextureID() { return m_TextureID; }
+	GLuint getNormalID() { return m_NormalID; }
 
 private:
 	GLuint m_TextureID;
+	GLuint m_NormalID;
 
 	bool initializeTexture();
 

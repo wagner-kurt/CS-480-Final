@@ -1,1 +1,244 @@
-﻿  CS480-Final.vcxproj -> D:\CS480-Final\x64\Debug\CS480-Final.exe
+﻿  graphics.cpp
+D:\CS480-Final\graphics.cpp(143,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(143,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(143,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(143,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(143,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(143,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(143,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(143,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(143,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(143,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(143,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(143,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(143,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(143,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(143,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(157,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(157,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(157,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(157,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(157,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(157,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(157,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(157,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(157,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(157,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(157,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(157,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(157,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(157,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(157,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(161,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(161,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(161,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(161,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(161,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(161,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(161,17): warning C4305:         with
+D:\CS480-Final\graphics.cpp(161,17): warning C4305:         [
+D:\CS480-Final\graphics.cpp(161,17): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(161,17): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(161,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(161,22): warning C4305:         with
+D:\CS480-Final\graphics.cpp(161,22): warning C4305:         [
+D:\CS480-Final\graphics.cpp(161,22): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(161,22): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(175,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(175,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(175,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(175,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(175,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(175,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(175,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(175,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(175,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(175,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(175,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(175,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(175,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(175,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(175,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(179,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(179,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(179,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(179,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(179,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(179,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(179,17): warning C4305:         with
+D:\CS480-Final\graphics.cpp(179,17): warning C4305:         [
+D:\CS480-Final\graphics.cpp(179,17): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(179,17): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(179,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(179,22): warning C4305:         with
+D:\CS480-Final\graphics.cpp(179,22): warning C4305:         [
+D:\CS480-Final\graphics.cpp(179,22): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(179,22): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(212,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(212,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(212,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(212,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(212,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(212,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(212,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(212,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(212,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(212,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(212,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(212,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(212,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(212,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(212,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(216,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(216,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(216,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(216,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(216,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(216,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(216,17): warning C4305:         with
+D:\CS480-Final\graphics.cpp(216,17): warning C4305:         [
+D:\CS480-Final\graphics.cpp(216,17): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(216,17): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(216,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(216,22): warning C4305:         with
+D:\CS480-Final\graphics.cpp(216,22): warning C4305:         [
+D:\CS480-Final\graphics.cpp(216,22): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(216,22): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(230,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(230,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(230,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(230,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(230,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(230,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(230,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(230,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(230,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(230,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(230,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(230,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(230,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(230,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(230,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(234,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(234,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(234,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(234,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(234,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(234,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(234,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(234,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(234,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(234,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(234,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(234,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(234,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(234,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(234,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(252,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(252,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(252,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(252,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(252,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(252,18): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(252,18): warning C4305:         with
+D:\CS480-Final\graphics.cpp(252,18): warning C4305:         [
+D:\CS480-Final\graphics.cpp(252,18): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(252,18): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(252,24): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(252,24): warning C4305:         with
+D:\CS480-Final\graphics.cpp(252,24): warning C4305:         [
+D:\CS480-Final\graphics.cpp(252,24): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(252,24): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(266,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(266,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(266,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(266,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(266,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(266,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(266,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(266,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(266,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(266,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(266,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(266,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(266,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(266,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(266,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(270,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(270,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(270,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(270,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(270,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(270,18): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(270,18): warning C4305:         with
+D:\CS480-Final\graphics.cpp(270,18): warning C4305:         [
+D:\CS480-Final\graphics.cpp(270,18): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(270,18): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(270,24): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(270,24): warning C4305:         with
+D:\CS480-Final\graphics.cpp(270,24): warning C4305:         [
+D:\CS480-Final\graphics.cpp(270,24): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(270,24): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(284,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(284,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(284,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(284,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(284,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(284,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(284,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(284,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(284,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(284,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(284,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(284,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(284,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(284,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(284,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(288,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(288,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(288,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(288,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(288,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(288,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(288,17): warning C4305:         with
+D:\CS480-Final\graphics.cpp(288,17): warning C4305:         [
+D:\CS480-Final\graphics.cpp(288,17): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(288,17): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(288,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(288,22): warning C4305:         with
+D:\CS480-Final\graphics.cpp(288,22): warning C4305:         [
+D:\CS480-Final\graphics.cpp(288,22): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(288,22): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(302,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(302,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(302,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(302,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(302,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(302,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(302,16): warning C4305:         with
+D:\CS480-Final\graphics.cpp(302,16): warning C4305:         [
+D:\CS480-Final\graphics.cpp(302,16): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(302,16): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(302,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(302,20): warning C4305:         with
+D:\CS480-Final\graphics.cpp(302,20): warning C4305:         [
+D:\CS480-Final\graphics.cpp(302,20): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(302,20): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(306,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(306,12): warning C4305:         with
+D:\CS480-Final\graphics.cpp(306,12): warning C4305:         [
+D:\CS480-Final\graphics.cpp(306,12): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(306,12): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(306,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(306,17): warning C4305:         with
+D:\CS480-Final\graphics.cpp(306,17): warning C4305:         [
+D:\CS480-Final\graphics.cpp(306,17): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(306,17): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(306,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+D:\CS480-Final\graphics.cpp(306,22): warning C4305:         with
+D:\CS480-Final\graphics.cpp(306,22): warning C4305:         [
+D:\CS480-Final\graphics.cpp(306,22): warning C4305:             _Ty=float
+D:\CS480-Final\graphics.cpp(306,22): warning C4305:         ]
+D:\CS480-Final\graphics.cpp(361,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\CS480-Final\graphics.cpp(361,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  CS480-Final.vcxproj -> D:\CS480-Final\x64\Debug\CS480-Final.exe
