@@ -11,6 +11,7 @@ public:
     Mesh();
     Mesh(glm::vec3 pivot, const char* fname);
     Mesh(glm::vec3 pivot, const char* fname, const char* tname);
+    Mesh(glm::vec3 pivot, const char* fname, const char* tname, const char* nname);
 
     ~Mesh();
     void Update(glm::mat4 model);
@@ -24,8 +25,7 @@ public:
 
     bool hasTex;
     GLuint getTextureID() { return m_texture->getTextureID(); }
-
-
+    GLuint getNormalID() { return m_texture->getNormalID(); }
 
 private:
     glm::vec3 pivotLocation;

@@ -1,13 +1,21 @@
 #include "Texture.h"
 
-Texture::Texture(const char* fileName) {
+Texture::Texture(const char* texFileName, const char* normFileName) {
 
-	loadTexture(fileName);
+	loadTexture(texFileName);
+	loadNormal(normFileName);
+	initializeTexture();
+}
+
+Texture::Texture(const char* texFileName) {
+	loadTexture(texFileName);
+	m_NormalID = 0;
 	initializeTexture();
 }
 
 Texture::Texture() {
 	m_TextureID = 0;
+	m_NormalID = 0;
 	printf("No Texture Data Provided.");
 }
 
@@ -15,6 +23,15 @@ bool Texture::loadTexture(const char* texFile) {
 	m_TextureID = SOIL_load_OGL_texture(texFile, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	if (!m_TextureID) {
 		printf("Failed: Could not open texture file!\n");
+		return false;
+	}
+	return true;
+}
+
+bool Texture::loadNormal(const char* normFile) {
+	m_NormalID = SOIL_load_OGL_texture(normFile, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (!m_NormalID) {
+		printf("Failed: Could not open normal file: %s\n", normFile);
 		return false;
 	}
 	return true;

@@ -1,1 +1,264 @@
-﻿  CS480-Final.vcxproj -> D:\CS480-Final\x64\Debug\CS480-Final.exe
+﻿  camera.cpp
+C:\Users\Chewd\Desktop\CS480-Final\camera.cpp(79,12): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Chewd\Desktop\CS480-Final\camera.cpp(80,14): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  engine.cpp
+C:\Users\Chewd\Desktop\CS480-Final\engine.cpp(125,23): warning C4244: 'return': conversion from 'double' to 'unsigned int', possible loss of data
+  graphics.cpp
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(143,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(157,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,17): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,17): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,17): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,17): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,22): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,22): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,22): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(161,22): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(175,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,17): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,17): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,17): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,17): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,22): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,22): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,22): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(179,22): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(212,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,17): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,17): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,17): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,17): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,22): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,22): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,22): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(216,22): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(230,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(234,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,18): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,18): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,18): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,18): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,18): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,24): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,24): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,24): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,24): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(252,24): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(266,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,18): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,18): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,18): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,18): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,18): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,24): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,24): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,24): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,24): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(270,24): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(284,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,17): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,17): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,17): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,17): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,22): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,22): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,22): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(288,22): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,16): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,16): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,16): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,16): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,16): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(302,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,12): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,12): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,12): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,12): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,12): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,17): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,17): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,17): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,17): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,17): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,22): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,22): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,22): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,22): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(306,22): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(361,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(361,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+  main.cpp
+  mesh.cpp
+C:\Users\Chewd\Desktop\CS480-Final\mesh.cpp(129,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\Chewd\Desktop\CS480-Final\mesh.cpp(166,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\Chewd\Desktop\CS480-Final\mesh.cpp(207,20): warning C4018: '<': signed/unsigned mismatch
+  object.cpp
+C:\Users\Chewd\Desktop\CS480-Final\object.cpp(73,43): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  shader.cpp
+  sphere.cpp
+C:\Users\Chewd\Desktop\CS480-Final\sphere.cpp(110,46): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Texture.cpp
+  window.cpp
+  Generating Code...
+C:\Users\Chewd\Desktop\CS480-Final\mesh.cpp(233): warning C4715: 'Mesh::loadModelFromFile': not all control paths return a value
+  LINK : C:\Users\Chewd\Desktop\CS480-Final\x64\Debug\CS480-Final.exe not found or not built by the last incremental link; performing full link
+  CS480-Final.vcxproj -> C:\Users\Chewd\Desktop\CS480-Final\x64\Debug\CS480-Final.exe

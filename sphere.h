@@ -19,6 +19,7 @@ public:
 
     Sphere(int prec);
     Sphere(int prec, const char* fname);
+    Sphere(int prec, const char* fname, const char* nname);
 
     int getNumVertices();
     int getNumIndices();
@@ -28,6 +29,7 @@ public:
     std::vector<glm::vec3> getNormals();
 
     GLuint getTextureID() { return m_texture->getTextureID(); }
+    GLuint getNormalID() { return m_texture->getNormalID(); }
     
     bool hasTex;
 

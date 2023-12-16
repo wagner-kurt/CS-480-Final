@@ -76,8 +76,8 @@ void Camera::Move(int direction) {
 }
 
 void Camera::Rotate(double dX, double dY) {
-    yaw += dX;
-    pitch += dY;
+    yaw -= dX;
+    pitch -= dY;
 
     if(pitch > 89.0f) {
         pitch = 89.0f;
