@@ -41,50 +41,98 @@ bool Shader::AddShader(GLenum ShaderType)
   {
     s = "#version 460\n \
           \
+          struct PositionalLight {\
+            vec4 ambient;\
+            vec4 diffuse;\
+            vec4 spec;\
+            vec3 position;\
+          };\
+          struct Material {\
+            vec4 ambient;\
+            vec4 diffuse;\
+            vec4 spec;\
+            float shininess;\
+          };\
+          uniform vec4 GlobalAmbient;\
+          uniform PositionalLight light;\
           layout (location = 0) in vec3 v_position; \
-          layout (location = 1) in vec3 v_color; \
-          layout (location = 2) in vec2 v_tc;  \
-          uniform bool hasTexture;\
+          layout (location = 1) in vec3 v_normal; \
+          layout (location = 2) in vec2 v_tc; \
              \
-          smooth out vec3 color; \
+          out vec3 varNorm; \
+          out vec3 varLdir; \
+          out vec3 varPos; \
           out vec2 tc;\
             \
-          uniform sampler2D sp; \
+          layout (binding = 0) uniform sampler2D samp; \
+          layout (binding = 1) uniform sampler2D samp1; \
           \
           uniform mat4 projectionMatrix; \
           uniform mat4 viewMatrix; \
           uniform mat4 modelMatrix; \
+          uniform mat3 normMatrix; \
           \
           void main(void) \
           { \
             vec4 v = vec4(v_position, 1.0); \
             gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v; \
-            color = v_color; \
             tc = v_tc;\
+            varPos = (viewMatrix * modelMatrix * vec4(v_position, 1.0f)).xyz; \
+            varLdir = light.position - varPos; \
+            varNorm = normMatrix * v_normal; \
           } \
           ";
   }
-  else if(ShaderType == GL_FRAGMENT_SHADER)
+  else if (ShaderType == GL_FRAGMENT_SHADER)
   {
-    s = "#version 460\n \
-          \
-          uniform sampler2D sp; \
-          \
-          smooth in vec3 color; \
-          in vec2 tc;\
-          uniform bool hasTexture;\
-          \
-          out vec4 frag_color; \
-          \
-          void main(void) \
-          { \
-             if(hasTexture)\
-               frag_color = texture(sp,tc);\
-            \
-            else \
-			   frag_color = vec4(color.rgb, 1.0);\
+      s = "#version 460\n \
+        \
+        struct PositionalLight {\
+            vec4 ambient;\
+            vec4 diffuse;\
+            vec4 spec;\
+            vec3 position;\
+          };\
+          struct Material {\
+            vec4 ambient;\
+            vec4 diffuse;\
+            vec4 spec;\
+            float shininess;\
+          };\
+        uniform Material material;\
+        uniform PositionalLight light;\
+        layout (binding = 0) uniform sampler2D samp; \
+        layout (binding = 1) uniform sampler2D samp1; \
+        \
+        in vec3 varNorm; \
+        in vec3 varLdir; \
+        in vec3 varPos; \
+        in vec2 tc;\
+        uniform bool hasNormalMap;\
+        uniform vec4 GlobalAmbient;\
+        \
+        out vec4 frag_color; \
+        \
+        void main(void) \
+        { \
+          vec3 L = normalize(varLdir); \
+          vec3 N; \
+          if (hasNormalMap) {\
+            N = normalize(varNorm + texture(samp1, tc).xyz * 2 - 1); \
+          } else {\
+            N = normalize(varNorm); \
           } \
-          ";
+          vec3 V = normalize(-varPos); \
+          vec3 R = normalize(reflect(-L, N)); \
+          \
+          float cosTheta = dot(L, N); \
+          float cosPhi = dot(R, V); \
+          vec3 amb = ((GlobalAmbient) + (texture(samp, tc) * light.ambient * material.ambient) / 1).xyz; \
+          vec3 dif = light.diffuse.xyz * material.diffuse.xyz * texture(samp, tc).xyz * max(0.0, cosTheta); \
+          vec3 spc = light.spec.xyz * material.spec.xyz * pow(max(0.0, cosPhi), material.shininess); \
+          frag_color = vec4(amb + dif + spc, 1); \
+        } \
+        ";
   }
 
   GLuint ShaderObj = glCreateShader(ShaderType);

@@ -24,6 +24,7 @@ public:
     bool loadModelFromFile(const char* path);
 
     bool hasTex;
+    bool hasNormal;
     GLuint getTextureID() { return m_texture->getTextureID(); }
     GLuint getNormalID() { return m_texture->getNormalID(); }
 

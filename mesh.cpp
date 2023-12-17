@@ -14,7 +14,8 @@ Mesh::Mesh()
 	if (!InitBuffers()) {
 		printf("Some buffers not initialized.\n");
 	}
-
+	hasTex = false;
+	hasNormal = false;
 }
 
 Mesh::Mesh(glm::vec3 pivot, const char* fname)
@@ -33,6 +34,7 @@ Mesh::Mesh(glm::vec3 pivot, const char* fname)
 	}
 
 	hasTex = false;
+	hasNormal = false;
 }
 
 Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname)
@@ -45,6 +47,8 @@ Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname)
 	} else {
 		hasTex = false;
 	}
+
+	hasNormal = false;
 
 	// Vertex Set Up
 	loadModelFromFile(fname);
@@ -66,11 +70,13 @@ Mesh::Mesh(glm::vec3 pivot, const char* fname, const char* tname, const char* nn
 	// load texture from file
 	m_texture = new Texture(tname, nname);
 	if (m_texture) {
-		std::cout << "mesh has texture\n";
+		std::cout << "mesh has texture and normal\n";
 		hasTex = true;
+		hasNormal = true;
 	}
 	else {
 		hasTex = false;
+		hasNormal = false;
 	}
 
 	// Vertex Set Up
@@ -151,9 +157,11 @@ void Mesh::Render(GLint posAttribLoc, GLint colAttribLoc, GLint tcAttribLoc, GLi
 
 	// If has texture, set up texture unit(s) Update here to activate and assign texture unit
 	if (m_texture != NULL) {
-		glUniform1i(hasTextureLoc, true);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, m_texture->getTextureID());
+		//glUniform1i(hasTextureLoc, true);
+		//glActiveTexture(GL_TEXTURE0);
+		//glBindTexture(GL_TEXTURE_2D, m_texture->getTextureID());
+		//glActiveTexture(GL_TEXTURE1);
+		//glBindTexture(GL_TEXTURE_2D, m_texture->getNormalID());
 	}
 	else {
 		glUniform1i(hasTextureLoc, false);

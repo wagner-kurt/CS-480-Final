@@ -11,6 +11,7 @@ using namespace std;
 #include "object.h"
 #include "sphere.h"
 #include "mesh.h"
+#include "light.h"
 
 #define numVBOs 2;
 #define numIBs 2;
@@ -43,11 +44,26 @@ class Graphics
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
+    GLint m_normalMatrix;
     GLint m_positionAttrib;
-    GLint m_colorAttrib;
+    GLint m_normalAttrib;
     GLint m_tcAttrib;
     GLint m_hasTexture;
+    GLint hasN;
+    GLint m_globalAmbLoc;
+    GLint m_lightALoc;
+    GLint m_lightDLoc;
+    GLint m_lightSLoc;
+    GLint m_lightPosLoc;
+    GLint m_mAmbLoc;
+    GLint m_mDiffLoc;
+    GLint m_mSpecLoc;
+    GLint m_mShineLoc;
 
+    float matAmbient[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    float matDiff[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float matSpec[4] = { 1.0f, 1.0f, 1.0f, 1.0f, };
+    float matShininess = 20.0f;
 
     Sphere* m_sun;
     Sphere* m_mercury;
@@ -63,8 +79,7 @@ class Graphics
 
     Mesh* m_mesh;
 
-
-
+    Light* m_light;
 };
 
 #endif /* GRAPHICS_H */

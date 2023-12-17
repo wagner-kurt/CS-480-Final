@@ -15,6 +15,7 @@ Sphere::Sphere(int prec) { // prec is precision, or number of slices
     setupBuffers();
     setupModelMatrix(glm::vec3(0., 0., 0.), 0., 1.);
     hasTex = false;
+    hasNormal = false;
 }
 
 Sphere::Sphere(int prec, const char* fname) { // prec is precision, or number of slices
@@ -33,6 +34,7 @@ Sphere::Sphere(int prec, const char* fname) { // prec is precision, or number of
     else {
         hasTex = false;
     }
+    hasNormal = false;
 }
 
 Sphere::Sphere(int prec, const char* fname, const char* nname) { // prec is precision, or number of slices
@@ -45,10 +47,12 @@ Sphere::Sphere(int prec, const char* fname, const char* nname) { // prec is prec
     // load texture from file
     m_texture = new Texture(fname, nname);
     if (m_texture) {
-        std::cout << "sphere has texture\n";
+        std::cout << "sphere has texture and normal\n";
         hasTex = true;
+        hasNormal = true;
     } else {
         hasTex = false;
+        hasNormal = false;
     }
 }
 
@@ -95,9 +99,11 @@ void Sphere::Render(GLint posAttribLoc, GLint colAttribLoc, GLint tcAttribLoc, G
 
     // If has texture, set up texture unit(s): update here for texture rendering
     if (m_texture != NULL) {
-        glUniform1i(hasTextureLoc, true);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_texture->getTextureID());
+        //glUniform1i(hasTextureLoc, true);
+        //glActiveTexture(GL_TEXTURE0);
+        //glBindTexture(GL_TEXTURE_2D, m_texture->getTextureID());
+        //glActiveTexture(GL_TEXTURE1);
+        //glBindTexture(GL_TEXTURE_2D, m_texture->getNormalID());
     }
     else {
         glUniform1i(hasTextureLoc, false);

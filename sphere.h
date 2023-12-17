@@ -32,6 +32,7 @@ public:
     GLuint getNormalID() { return m_texture->getNormalID(); }
     
     bool hasTex;
+    bool hasNormal;
 
 private:
     glm::vec3 pivotLocation;
