@@ -65,38 +65,106 @@ void Engine::ProcessInput()
     if (glfwGetKey(m_window->getWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_window->getWindow(), true);
 
+    //Check if need to toggle third person
+    if (glfwGetKey(m_window->getWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
+    {
+        if (!keyPressed)
+        {
+            if (thirdPerson)
+            {
+                thirdPerson = false;
+                glfwSetInputMode(m_window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            }
+            else
+            {
+                thirdPerson = true;
+                glfwSetInputMode(m_window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+                velocity = 0.f;
+            }
 
-    // Update camera animation here.
-    //obtain and store mouse position
-    glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
-    double dX = -(mouseX - prevMouseX);
-    double dY = mouseY - prevMouseY;
-    
-    //move camera inputs
-    if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
-        m_graphics->getCamera()->Move(CAM_FORWARD);
-    if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
-        m_graphics->getCamera()->Move(CAM_BACKWARD);
-    if (glfwGetKey(m_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
-        m_graphics->getCamera()->Move(CAM_LEFT);
-    if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
-        m_graphics->getCamera()->Move(CAM_RIGHT);
-
-    //set sensitivity here
-    float sensitivity = 0.1f;
-    dX *= sensitivity;
-    dY *= sensitivity;
-
-    //rotate camera inputs if difference in mouse position detected
-    if (dX != 0.0 || dY != 0.0) {
-        m_graphics->getCamera()->Rotate(dX, dY);
+            m_graphics->ToggleView(thirdPerson);
+            keyPressed = true;
+        }
     }
+    else if (keyPressed)
+        keyPressed = false;
 
+    if (thirdPerson)
+    {
+        double dX = 0.f;
+        double dY = 0.f;
+        double tilt = 0.f;
+        //move camera inputs
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
+            velocity += 0.005f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
+            velocity -= 0.005f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
+            dX += 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
+            dX -= 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_E) == GLFW_PRESS)
+            dY -= 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_Q) == GLFW_PRESS)
+            dY += 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_C) == GLFW_PRESS)
+            tilt += 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_Z) == GLFW_PRESS)
+            tilt -= 1.f;
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+            velocity = 0.f;
+
+        m_graphics->getCamera()->Move(CAM_FORWARD, velocity);
+
+        // Keep mouse position stored so transition is smooth
+        glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
+
+        //set sensitivity here
+        float sensitivity = 0.5f;
+        dX *= sensitivity;
+        dY *= sensitivity;
+        tilt *= sensitivity;
+
+        //rotate camera inputs if difference in mouse position detected
+        if (dX != 0.0 || dY != 0.0 || tilt != 0.0) {
+            m_graphics->getCamera()->Rotate(dX, dY, tilt);
+        }
+    }
+    else
+    {
+        //move camera inputs
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
+            m_graphics->getCamera()->Move(CAM_FORWARD, 0.1f);
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
+            m_graphics->getCamera()->Move(CAM_BACKWARD, 0.1f);
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
+            m_graphics->getCamera()->Move(CAM_LEFT, 0.1f);
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
+            m_graphics->getCamera()->Move(CAM_RIGHT, 0.1f);
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+            m_graphics->getCamera()->Reset();
+
+        // Update camera animation here.
+        //obtain and store mouse position
+        glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
+        double dX = -(mouseX - prevMouseX);
+        double dY = mouseY - prevMouseY;
+
+        //set sensitivity here
+        float sensitivity = 0.1f;
+        dX *= sensitivity;
+        dY *= sensitivity;
+
+        //rotate camera inputs if difference in mouse position detected
+        if (dX != 0.0 || dY != 0.0) {
+            m_graphics->getCamera()->Rotate(dX, dY, 0.f);
+        }
+    }
     //change camera FoV from scroll wheel
     if (scrollOffset != 0.0) {
         m_graphics->getCamera()->Zoom(scrollOffset);
     }
-
+    
     //update prev mouse pos for next frame
     prevMouseX = mouseX;
     prevMouseY = mouseY;

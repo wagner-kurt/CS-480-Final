@@ -26,8 +26,10 @@ bool Camera::Initialize(int w, int h)
     FoV = 40.f;
     width = w;
     height = h;
-    yaw = 90.0f;
-    pitch = 0.0f;
+    thirdPer = false;
+    yaw = 90.f;
+    pitch = 0.f;
+    roll = 0.f;
 
   //view = glm::lookAt(cameraPos, focalPoint, cameraUp);
   view = glm::lookAt(cameraPos, cameraFront + cameraPos, cameraUp);
@@ -51,7 +53,7 @@ void Camera::Update(double dX, double dY) {
     view *= glm::rotate(glm::mat4(1.0f), (float)dY / 100.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 }
 */
-void Camera::Move(int direction) {
+void Camera::Move(int direction, float velocity) {
     glm::vec3 moveVec = glm::vec3(0.0f, 0.0f, 0.0f);
     //move camera position and focal point L/R/forward/backward
     switch (direction) {
@@ -69,15 +71,18 @@ void Camera::Move(int direction) {
         break;
     }
 
-    cameraPos += moveVec * 0.1f;
+    cameraPos += moveVec * velocity;
 
-    //view = glm::lookAt(cameraPos, focalPoint, cameraUp);
-    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    if (thirdPer)
+        view = glm::lookAt(cameraPos - (cameraFront * 5.f), cameraPos, cameraUp);
+    else
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
-void Camera::Rotate(double dX, double dY) {
+void Camera::Rotate(double dX, double dY, double tilt) {
     yaw -= dX;
     pitch -= dY;
+    roll -= tilt;
 
     if(pitch > 89.0f) {
         pitch = 89.0f;
@@ -92,7 +97,16 @@ void Camera::Rotate(double dX, double dY) {
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(front);
 
-    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    glm::mat4 roll_mat = glm::rotate(glm::mat4(1.0f), glm::radians(roll), cameraFront);
+    cameraUp = glm::mat3(roll_mat) * glm::vec3(0.f, 1.f, 0.f);
+
+    //glm::vec3 right = glm::normalize(glm::cross(cameraFront, { 0.f, 1.f, 0.f }));
+    //glm::vec3 cameraUp = glm::normalize(glm::cross(right, cameraFront));
+
+    if (thirdPer)
+        view = glm::lookAt(cameraPos - (cameraFront * 5.f), cameraPos, cameraUp);
+    else
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
 void Camera::Zoom(double dY) {
@@ -109,4 +123,31 @@ glm::mat4 Camera::GetProjection()
 glm::mat4 Camera::GetView()
 {
   return view;
+}
+
+glm::mat4 Camera::GetOrigView()
+{
+    return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+}
+
+void Camera::ToggleView(bool thrPer)
+{
+    thirdPer = thrPer;
+
+    if (thirdPer)
+        view = glm::lookAt(cameraPos - (cameraFront * 5.f), cameraPos, cameraUp);
+    else
+    {
+        roll = 0.f;
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, glm::vec3(0.0f, 1.0f, 0.0f));
+    }
+}
+
+void Camera::Reset()
+{
+    yaw = 90.f;
+    pitch = 0.f;
+    roll = 0.f;
+
+    Rotate(0.f, 0.f, 0.f);
 }

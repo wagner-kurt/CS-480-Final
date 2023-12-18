@@ -16,12 +16,16 @@ class Camera
     bool Initialize(int w, int h);
     //void Update(glm::vec3 pan);
     //void Update(double dX, double dY);
-    void Move(int direction);
-    void Rotate(double dX, double dY);
+    void Move(int direction, float velocity);
+    void Rotate(double dX, double dY, double roll);
     void Zoom(double dY);
     glm::mat4 GetProjection();
     glm::mat4 GetView();
-
+    glm::vec3 GetPosition();
+    glm::vec3 GetFront();
+    glm::mat4 GetOrigView();
+    void ToggleView(bool thrPer);
+    void Reset();
   
   private:
     int width, height;
@@ -32,8 +36,10 @@ class Camera
     glm::vec3 cameraUp;
     glm::mat4 projection;
     glm::mat4 view;
+    bool thirdPer;
     float pitch;
     float yaw;
+    float roll;
 };
 
 #endif /* CAMERA_H */

@@ -38,6 +38,9 @@ class Engine
     double mouseY{ 0.0 };
     double prevMouseX{ 0.0 };
     double prevMouseY{ 0.0 };
+    bool thirdPerson = false;
+    bool keyPressed = false;
+    float velocity = 0.f;
 
     Graphics *m_graphics;
 

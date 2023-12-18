@@ -27,6 +27,7 @@ class Graphics
     void Render();
 
     Camera* getCamera() { return m_camera; }
+    void ToggleView(bool thrPer);
 
   private:
     std::string ErrorString(GLenum error);
@@ -80,6 +81,8 @@ class Graphics
     Mesh* m_mesh;
 
     Light* m_light;
+
+    bool thirdPer = false;
 };
 
 #endif /* GRAPHICS_H */

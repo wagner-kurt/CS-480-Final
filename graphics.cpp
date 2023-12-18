@@ -327,6 +327,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	}
 	modelStack.pop();	// back to the sun coordinates
 
+	/*
 	// position of the space ship
 	speed = { 2., 2., 2. };
 	dist = { 22., 22., 22. };
@@ -349,11 +350,19 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_mesh != NULL) {
 		m_mesh->Update(localTransform);
 	}
-
+	
 	modelStack.pop(); 	// back to the sun coordinates
-
+	*/
 	modelStack.pop();	// empty stack
 
+	scale = { .01f, .01f, .01f };
+
+	localTransform = glm::inverse(m_camera->GetOrigView());
+	localTransform *= glm::scale(glm::vec3(scale[0], scale[1], scale[2]));
+	if (m_mesh != NULL) {
+		m_mesh->Update(localTransform);
+	}
+	//std::cout << shipRotAxis[0] << std::endl;
 }
 
 
@@ -907,3 +916,8 @@ std::string Graphics::ErrorString(GLenum error)
 	}
 }
 
+void Graphics::ToggleView(bool thrPer)
+{
+	thirdPer = thrPer;
+	m_camera->ToggleView(thrPer);
+}
