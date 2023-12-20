@@ -409,9 +409,9 @@ void Graphics::HierarchicalUpdate2(double dt) {
 								{2.0f, 0.0f, 2.0f},
 								{2.0f, 0.0f, 2.0f}, 
 								{1.0f, 0.0f, 1.0f} };
-		glm::vec3 target = planetLoc[orbitIndex];
-		glm::vec3 cam = target + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
-		m_camera->SetView(glm::lookAt(cam, target, glm::vec3(0.f, 1.f, 0.f)));
+		glm::vec3 cam = planetLoc[orbitIndex] + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
+		m_camera->SetPosition(cam);
+		m_camera->Rotate(0.174f, 0.f, 0.f);
 	}
 }
 
