@@ -21,7 +21,9 @@ class Camera
     void Zoom(double dY);
     glm::mat4 GetProjection();
     glm::mat4 GetView();
+    void SetView(glm::mat4 newView);
     glm::mat4 GetOrigView();
+    glm::vec3 GetPosition();
     void ToggleView(bool thrPer);
     void Reset();
   

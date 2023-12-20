@@ -29,6 +29,7 @@ class Graphics
 
     Camera* getCamera() { return m_camera; }
     void ToggleView(bool thrPer);
+    void ToggleOrbit(bool orb);
 
   private:
     std::string ErrorString(GLenum error);
@@ -127,6 +128,9 @@ class Graphics
     Light* m_light;
 
     bool thirdPer = false;
+    bool orbitIndex = -1;
+    bool orbiting = false;
+    glm::vec3 planetLoc[11];
 };
 
 #endif /* GRAPHICS_H */

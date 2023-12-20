@@ -127,9 +127,19 @@ glm::mat4 Camera::GetView()
   return view;
 }
 
+void Camera::SetView(glm::mat4 newView)
+{
+    view = newView;
+}
+
 glm::mat4 Camera::GetOrigView()
 {
     return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+}
+
+glm::vec3 Camera::GetPosition()
+{
+    return cameraPos;
 }
 
 void Camera::ToggleView(bool thrPer)
@@ -147,9 +157,8 @@ void Camera::ToggleView(bool thrPer)
 
 void Camera::Reset()
 {
-    yaw = 90.f;
-    pitch = 0.f;
-    roll = 0.f;
-
-    Rotate(0.f, 0.f, 0.f);
+    if (thirdPer)
+        view = glm::lookAt(cameraPos - (cameraFront * camDist), cameraPos, cameraUp);
+    else
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }

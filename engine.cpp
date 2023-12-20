@@ -82,11 +82,13 @@ void Engine::ProcessInput()
                 velocity = 0.f;
             }
 
+            orbiting = false;
+            m_graphics->ToggleOrbit(orbiting);
             m_graphics->ToggleView(thirdPerson);
             keyPressed = true;
         }
     }
-    else if (keyPressed)
+    else if (keyPressed && glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
         keyPressed = false;
 
     if (thirdPerson)
@@ -135,17 +137,31 @@ void Engine::ProcessInput()
     {
         float movement = 0.025f;
         //move camera inputs
-        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
-            m_graphics->getCamera()->Move(CAM_FORWARD, movement);
-        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
-            m_graphics->getCamera()->Move(CAM_BACKWARD, movement);
-        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
-            m_graphics->getCamera()->Move(CAM_LEFT, movement);
-        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
-            m_graphics->getCamera()->Move(CAM_RIGHT, movement);
-        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-            m_graphics->getCamera()->Reset();
+        if (!orbiting) {
+            if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
+                m_graphics->getCamera()->Move(CAM_FORWARD, movement);
+            if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
+                m_graphics->getCamera()->Move(CAM_BACKWARD, movement);
+            if (glfwGetKey(m_window->getWindow(), GLFW_KEY_A) == GLFW_PRESS)
+                m_graphics->getCamera()->Move(CAM_LEFT, movement);
+            if (glfwGetKey(m_window->getWindow(), GLFW_KEY_D) == GLFW_PRESS)
+                m_graphics->getCamera()->Move(CAM_RIGHT, movement);
+        }
 
+        if (glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+            if (orbiting && !keyPressed) {
+                m_graphics->getCamera()->Reset();
+                orbiting = false;
+                keyPressed = true;
+                m_graphics->ToggleOrbit(orbiting);
+            }
+            else if (!keyPressed) {
+                orbiting = true;
+                keyPressed = true;
+                m_graphics->ToggleOrbit(orbiting);
+            }
+        }
+           
         // Update camera animation here.
         //obtain and store mouse position
         glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
