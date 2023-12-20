@@ -115,7 +115,7 @@ bool Graphics::Initialize(int width, int height)
 	m_sun = new Sphere(64, "assets\\2k_sun.jpg", "assets\\2k_sun-n.jpg");
 
 	// Comet
-	m_comet = new Sphere(64, "assets\\Ceres.jpg", "assets\\Ceres-n.jpg");
+	m_comet = new Sphere(64, "assets\\Eris.jpg", "assets\\Eris-n.jpg");
 
 	// Mercury
 	m_mercury = new Sphere(64, "assets\\Mercury.jpg", "assets\\Mercury-n.jpg");
@@ -150,7 +150,7 @@ bool Graphics::Initialize(int width, int height)
 	// Asteroid
 	m_asteroid = new Sphere * [500];
 	for (int i = 0; i < asteroidCount; i++) {
-		m_asteroid[i] = new Sphere(8, "assets\\2k_moon.jpg", "assets\\2k_moon-n.jpg");
+		m_asteroid[i] = new Sphere(8, "assets\\Haumea.jpg", "assets\\Haumea-n.jpg");
 	}
 
 	// Set random positions in a ring for each asteroid
@@ -339,7 +339,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 
 		// radius (different for each asteroid)
 		float radius = glm::length(initialPos);
-		float angle = -0.0001f * (float)dt;
+		float angle = -0.00001f * (float)dt;
 		
 		// continue circular motion based on previous position and speed * dt
 		float x = initialPos.x * cos(angle) - initialPos.z * sin(angle);
@@ -1203,12 +1203,12 @@ void Graphics::setMaterialShip() {
 GLuint Graphics::loadCubeMap() {
 	GLuint textureID;
 	// load each face of cubemap
-	std::string xp = "assets\\Cube-xp.jpg";
-	std::string xn = "assets\\Cube-xn.jpg";
-	std::string yp = "assets\\Cube-yp.jpg";
-	std::string yn = "assets\\Cube-yn.jpg";
-	std::string zp = "assets\\Cube-zp.jpg";
-	std::string zn = "assets\\Cube-zn.jpg";
+	std::string xp = "assets\\Cube-xp1.jpg";
+	std::string xn = "assets\\Cube-xn1.jpg";
+	std::string yp = "assets\\Cube-yp1.jpg";
+	std::string yn = "assets\\Cube-yn1.jpg";
+	std::string zp = "assets\\Cube-zp1.jpg";
+	std::string zn = "assets\\Cube-zn1.jpg";
 
 	// get texture id
 	textureID = SOIL_load_OGL_cubemap(xp.c_str(), xn.c_str(), yp.c_str(), yn.c_str(), zp.c_str(), zn.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
