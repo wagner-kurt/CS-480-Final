@@ -1,5 +1,13 @@
 # CS-480-Final
 
+## Libraries:
+
+- GLEW
+- GLFW
+- GLM
+- SOIL2
+- Assimp
+
 ## CONTROLS:
 
 ### Planetary observation mode:
