@@ -2,11 +2,11 @@
 
 ## Libraries:
 
-- GLEW
-- GLFW
-- GLM
-- SOIL2
-- Assimp
+- GLEW: manage OpenGL extensions
+- GLFW: framework for running OpenGL applications
+- GLM: math for vectors/matrices/etc.
+- SOIL2: texture loading
+- Assimp: model loading
 
 ## CONTROLS:
 
