@@ -141,6 +141,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_sun != NULL) {
 		m_sun->Update(localTransform);
 	}
+	planetLoc[0] = glm::vec3(0, 0, 0);
 
 	// set light position to center of sun, update with camera view matrix
 	m_light->m_lightPosition = glm::vec3(m_sun->GetModel()[3]);
@@ -162,6 +163,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_mercury != NULL) {
 		m_mercury->Update(localTransform);
 	}
+	planetLoc[1] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of venus
@@ -180,6 +182,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_venus != NULL) {
 		m_venus->Update(localTransform);
 	}
+	planetLoc[2] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of the earth
@@ -198,6 +201,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_earth != NULL) {
 		m_earth->Update(localTransform);
 	}
+	planetLoc[3] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 
 	// position of the moon
 	speed = { 0.075f, 0.075f, 0.075f };
@@ -215,7 +219,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_moon != NULL) {
 		m_moon->Update(localTransform);
 	}
-
+	planetLoc[4] = planetLoc[3] + glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the earth coordinates
 	modelStack.pop();	// back to the sun coordinates
 
@@ -235,6 +239,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_mars != NULL) {
 		m_mars->Update(localTransform);
 	}
+	planetLoc[5] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of ceres
@@ -253,6 +258,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_ceres != NULL) {
 		m_ceres->Update(localTransform);
 	}
+	planetLoc[6] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of jupiter
@@ -271,6 +277,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_jupiter != NULL) {
 		m_jupiter->Update(localTransform);
 	}
+	planetLoc[7] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of saturn
@@ -289,6 +296,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_saturn != NULL) {
 		m_saturn->Update(localTransform);
 	}
+	planetLoc[8] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of uranus
@@ -307,6 +315,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_uranus != NULL) {
 		m_uranus->Update(localTransform);
 	}
+	planetLoc[9] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of neptune
@@ -325,34 +334,9 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_neptune != NULL) {
 		m_neptune->Update(localTransform);
 	}
+	planetLoc[10] = glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
 	modelStack.pop();	// back to the sun coordinates
 
-	/*
-	// position of the space ship
-	speed = { 2., 2., 2. };
-	dist = { 22., 22., 22. };
-	rotVector = { 0.,1.,1. };
-	rotSpeed = { 2., 2., 2. };
-	scale = { .01f, .01f, .01f };
-	localTransform = modelStack.top();
-
-	//find and rotate by angle between previous and current point in orbit
-	glm::vec3 prevShipPos = glm::vec3(m_mesh->GetModel()[3]);
-	glm::vec3 newShipPos = glm::vec3(cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]);
-	glm::vec3 shipRotAxis = glm::cross(prevShipPos, newShipPos);
-	float shipRotAngle = glm::acos(glm::dot(glm::normalize(prevShipPos), glm::normalize(newShipPos)));
-
-	localTransform *= glm::translate(glm::mat4(1.f), newShipPos);
-	modelStack.push(localTransform);			// store spaceship-moon-planet-sun coordinate
-	localTransform *= glm::rotate(glm::mat4(1.f), shipRotAngle, shipRotAxis);
-	localTransform *= glm::scale(glm::vec3(scale[0], scale[1], scale[2]));
-
-	if (m_mesh != NULL) {
-		m_mesh->Update(localTransform);
-	}
-	
-	modelStack.pop(); 	// back to the sun coordinates
-	*/
 	modelStack.pop();	// empty stack
 
 	scale = { .01f, .01f, .01f };
@@ -362,7 +346,25 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_mesh != NULL) {
 		m_mesh->Update(localTransform);
 	}
-	//std::cout << shipRotAxis[0] << std::endl;
+	
+	if (orbiting)
+	{
+		speed = { 0.5f, 0.5f, 0.5f };
+		glm::vec3 dists[11] = {	{3.5f, 0.0f, 3.5f},
+								{1.0f, 0.0f, 1.0f},
+								{1.5f, 0.0f, 1.5f}, 
+								{1.5f, 0.0f, 1.5f}, 
+								{1.0f, 0.0f, 1.0f}, 
+								{1.0f, 0.0f, 1.0f}, 
+								{1.0f, 0.0f, 1.0f}, 
+								{2.0f, 0.0f, 2.0f}, 
+								{2.0f, 0.0f, 2.0f}, 
+								{2.0f, 0.0f, 2.0f}, 
+								{2.0f, 0.0f, 2.0f} };
+		glm::vec3 target = planetLoc[orbitIndex];
+		glm::vec3 cam = target + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
+		m_camera->SetView(glm::lookAt(cam, target, glm::vec3(0.f, 1.f, 0.f)));
+	}
 }
 
 
@@ -921,4 +923,22 @@ void Graphics::ToggleView(bool thrPer)
 {
 	thirdPer = thrPer;
 	m_camera->ToggleView(thrPer);
+}
+
+void Graphics::ToggleOrbit(bool orb)
+{
+	orbiting = orb;
+	glm::vec3 shipCoord = m_camera->GetPosition();
+	
+	float min = glm::distance(shipCoord, planetLoc[0]);
+	orbitIndex = 0;
+	for (int i = 1; i < 11; i++)
+	{
+		float dist = glm::distance(shipCoord, planetLoc[i]);
+		if (min > dist)
+		{
+			orbitIndex = i;
+			min = dist;
+		}
+	}
 }

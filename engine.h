@@ -39,6 +39,7 @@ class Engine
     double prevMouseX{ 0.0 };
     double prevMouseY{ 0.0 };
     bool thirdPerson = false;
+    bool orbiting = false;
     bool keyPressed = false;
     float velocity = 0.f;
 
