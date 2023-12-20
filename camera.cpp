@@ -102,9 +102,6 @@ void Camera::Rotate(double dX, double dY, double tilt) {
     glm::mat4 roll_mat = glm::rotate(glm::mat4(1.0f), glm::radians(roll), cameraFront);
     cameraUp = glm::mat3(roll_mat) * glm::vec3(0.f, 1.f, 0.f);
 
-    //glm::vec3 right = glm::normalize(glm::cross(cameraFront, { 0.f, 1.f, 0.f }));
-    //glm::vec3 cameraUp = glm::normalize(glm::cross(right, cameraFront));
-
     if (thirdPer)
         view = glm::lookAt(cameraPos - (cameraFront * camDist), cameraPos, cameraUp);
     else
@@ -127,11 +124,6 @@ glm::mat4 Camera::GetView()
   return view;
 }
 
-void Camera::SetView(glm::mat4 newView)
-{
-    view = newView;
-}
-
 glm::mat4 Camera::GetOrigView()
 {
     return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -140,6 +132,14 @@ glm::mat4 Camera::GetOrigView()
 glm::vec3 Camera::GetPosition()
 {
     return cameraPos;
+}
+void Camera::SetPosition(glm::vec3 pos)
+{
+    cameraPos = pos;
+    if (thirdPer)
+        view = glm::lookAt(cameraPos - (cameraFront * camDist), cameraPos, cameraUp);
+    else
+        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
 void Camera::ToggleView(bool thrPer)

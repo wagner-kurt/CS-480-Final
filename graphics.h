@@ -123,6 +123,9 @@ class Graphics
     Sphere* m_uranus;
     Sphere* m_neptune;
 
+    Sphere** m_asteroid;
+    int asteroidCount{ 50 };
+
     Mesh* m_mesh;
 
     Light* m_light;

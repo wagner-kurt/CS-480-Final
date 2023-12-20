@@ -125,7 +125,7 @@ bool Graphics::Initialize(int width, int height)
 
 	// The Earth
 	m_earth = new Sphere(64, "assets\\2k_earth_daymap.jpg", "assets\\2k_earth_daymap-n.jpg");
-	
+
 	// The Moon
 	m_moon = new Sphere(64, "assets\\2k_moon.jpg", "assets\\2k_moon-n.jpg");
 
@@ -147,6 +147,38 @@ bool Graphics::Initialize(int width, int height)
 	// Neptune
 	m_neptune = new Sphere(64, "assets\\Neptune.jpg", "assets\\Neptune-n.jpg");
 
+	// Asteroid
+	m_asteroid = new Sphere * [500];
+	for (int i = 0; i < asteroidCount; i++) {
+		m_asteroid[i] = new Sphere(8, "assets\\2k_moon.jpg", "assets\\2k_moon-n.jpg");
+	}
+	srand(glfwGetTime());
+	float radius = 17.0f;
+	float offset = 3.0f;
+	float scale[] = {0.06f, 0.04f, 0.08f};
+	for (unsigned int i = 0; i < asteroidCount; i++) {
+		glm::mat4 model = glm::mat4(1.0f);
+		float angle = (float)i / (float)500 * 360.0f;
+		float displacement = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
+		float x = sin(angle) * radius + displacement;
+		displacement = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
+		float y = displacement * 0.4f;
+		displacement = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
+		float z = cos(angle) * radius + displacement;
+		model = glm::translate(model, glm::vec3(x, y, z));
+
+		float scaleX = scale[0] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
+		float scaleY = scale[1] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
+		float scaleZ = scale[2] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
+		model = glm::scale(model, glm::vec3(scaleX, scaleY, scaleZ));
+
+		float rotAngle = (rand() % 360);
+		model = glm::rotate(model, rotAngle, glm::vec3(0.4f, 0.6f, 0.8f));
+
+		if (m_asteroid[i] != NULL) {
+			m_asteroid[i]->Update(model);
+		}
+	}
 
 	//enable depth testing
 	glEnable(GL_DEPTH_TEST);
@@ -290,6 +322,30 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	planetLoc[5] = glm::vec3(m_mars->GetModel()[3]);
 	modelStack.pop();	// back to the sun coordinates
 
+	// asteroids
+	for (unsigned int i = 0; i < asteroidCount; i++) {
+		glm::vec3 initialPos = glm::vec3(m_asteroid[i]->GetModel()[3]);
+		glm::vec3 initialScale = glm::vec3(
+			m_asteroid[i]->GetModel()[0][0],
+			m_asteroid[i]->GetModel()[1][1],
+			m_asteroid[i]->GetModel()[2][2]
+		);
+		glm::mat4 model = glm::mat4(1.0f);
+
+		float radius = glm::length(initialPos);
+		float angle = -0.0001f * (float)dt;
+		
+		float x = initialPos.x * cos(angle) - initialPos.z * sin(angle);
+		float y = initialPos.y;
+		float z = initialPos.x * sin(angle) + initialPos.z * cos(angle);
+		model *= glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
+		model *= glm::scale(initialScale);
+
+		if (m_asteroid[i] != NULL) {
+			m_asteroid[i]->Update(model);
+		}
+	}
+
 	// position of ceres
 	speed = { 0.0072f, 0.0072f, 0.0072f };
 	dist = { 18.0f, 0.0f, 18.0f };
@@ -409,9 +465,9 @@ void Graphics::HierarchicalUpdate2(double dt) {
 								{2.0f, 0.0f, 2.0f},
 								{2.0f, 0.0f, 2.0f}, 
 								{1.0f, 0.0f, 1.0f} };
-		glm::vec3 target = planetLoc[orbitIndex];
-		glm::vec3 cam = target + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
-		m_camera->SetView(glm::lookAt(cam, target, glm::vec3(0.f, 1.f, 0.f)));
+		glm::vec3 cam = planetLoc[orbitIndex] + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
+		m_camera->SetPosition(cam);
+		m_camera->Rotate(0.174f, 0.f, 0.f);
 	}
 }
 
@@ -480,6 +536,36 @@ void Graphics::Render()
 		m_cube->Render(m_positionAttrib,m_normalAttrib);
 	}*/
 
+	// Render Asteroids
+	setMaterialRock();
+	for (unsigned int i = 0; i < asteroidCount; i++) {
+		if (m_asteroid != NULL) {
+			glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView() * m_asteroid[i]->GetModel())))));
+			glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_asteroid[i]->GetModel()));
+			if (m_asteroid[i]->hasTex) {
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, m_asteroid[0]->getTextureID());
+				GLuint sampler = m_shader->GetUniformLocation("samp");
+				if (sampler == INVALID_UNIFORM_LOCATION)
+				{
+					printf("Sampler Not found not found\n");
+				}
+				glUniform1i(sampler, 0);
+				glUniform1i(hasN, false);
+			}
+			if (m_asteroid[i]->hasNormal) {
+				glActiveTexture(GL_TEXTURE1);
+				glBindTexture(GL_TEXTURE_2D, m_asteroid[0]->getNormalID());
+				GLuint sampler = m_shader->GetUniformLocation("samp1");
+				if (sampler == INVALID_UNIFORM_LOCATION) {
+					printf("Sampler not found\n");
+				}
+				glUniform1i(sampler, 1);
+				glUniform1i(hasN, true);
+			}
+			m_asteroid[i]->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
+		}
+	}
 	
 	// Render Ship
 	setMaterialShip();
@@ -515,6 +601,8 @@ void Graphics::Render()
 		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_pyramid->GetModel()));
 		m_pyramid->Render(m_positionAttrib, m_normalAttrib);
 	}*/
+
+	
 
 	// Render Sun
 	setMaterialSun();
