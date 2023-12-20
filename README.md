@@ -1,8 +1,8 @@
 # CS-480-Final
 
-##CONTROLS:##
+## CONTROLS:
 
-###Planetary observation mode:###
+### Planetary observation mode:
 
 - W - move forward
 - S - move backward
@@ -12,7 +12,7 @@
 - LSHIFT - toggle planet panning mode
 - SPACE - switch to exploration mode
 
-###Exploration mode:###
+### Exploration mode:
 
 - W - accelerate forward
 - S - accelerate backward
