@@ -152,7 +152,10 @@ bool Graphics::Initialize(int width, int height)
 	for (int i = 0; i < asteroidCount; i++) {
 		m_asteroid[i] = new Sphere(8, "assets\\2k_moon.jpg", "assets\\2k_moon-n.jpg");
 	}
+
+	// Set random positions in a ring for each asteroid
 	srand(glfwGetTime());
+	// area between Mars and Jupiter
 	float radius = 17.0f;
 	float offset = 3.0f;
 	float scale[] = {0.06f, 0.04f, 0.08f};
@@ -167,6 +170,7 @@ bool Graphics::Initialize(int width, int height)
 		float z = cos(angle) * radius + displacement;
 		model = glm::translate(model, glm::vec3(x, y, z));
 
+		// random potato shape and size for each asteroid
 		float scaleX = scale[0] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
 		float scaleY = scale[1] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
 		float scaleZ = scale[2] + (static_cast<float>(std::rand()) / RAND_MAX) * 2 * 0.01f - 0.01f;
@@ -324,6 +328,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 
 	// asteroids
 	for (unsigned int i = 0; i < asteroidCount; i++) {
+		// get initial position
 		glm::vec3 initialPos = glm::vec3(m_asteroid[i]->GetModel()[3]);
 		glm::vec3 initialScale = glm::vec3(
 			m_asteroid[i]->GetModel()[0][0],
@@ -332,9 +337,11 @@ void Graphics::HierarchicalUpdate2(double dt) {
 		);
 		glm::mat4 model = glm::mat4(1.0f);
 
+		// radius (different for each asteroid)
 		float radius = glm::length(initialPos);
 		float angle = -0.0001f * (float)dt;
 		
+		// continue circular motion based on previous position and speed * dt
 		float x = initialPos.x * cos(angle) - initialPos.z * sin(angle);
 		float y = initialPos.y;
 		float z = initialPos.x * sin(angle) + initialPos.z * cos(angle);
@@ -1195,6 +1202,7 @@ void Graphics::setMaterialShip() {
 
 GLuint Graphics::loadCubeMap() {
 	GLuint textureID;
+	// load each face of cubemap
 	std::string xp = "assets\\Cube-xp.jpg";
 	std::string xn = "assets\\Cube-xn.jpg";
 	std::string yp = "assets\\Cube-yp.jpg";
@@ -1202,6 +1210,7 @@ GLuint Graphics::loadCubeMap() {
 	std::string zp = "assets\\Cube-zp.jpg";
 	std::string zn = "assets\\Cube-zn.jpg";
 
+	// get texture id
 	textureID = SOIL_load_OGL_cubemap(xp.c_str(), xn.c_str(), yp.c_str(), yn.c_str(), zp.c_str(), zn.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
 	if (textureID == 0) {
 		printf("Error loading cubemap\n");
@@ -1210,6 +1219,7 @@ GLuint Graphics::loadCubeMap() {
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
+	// set parameters (reduce seams)
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -1220,6 +1230,7 @@ GLuint Graphics::loadCubeMap() {
 }
 
 void Graphics::setupSkybox() {
+	// 6 faces of skybox
 	skyboxVertices = { 
 		-1.0f,  1.0f, -1.0f,
 		-1.0f, -1.0f, -1.0f,
@@ -1264,6 +1275,7 @@ void Graphics::setupSkybox() {
 		1.0f, -1.0f,  1.0f
 	};
 
+	// buffer setup
 	glGenVertexArrays(1, &skyboxVAO);
 	glGenBuffers(1, &skyboxVBO);
 

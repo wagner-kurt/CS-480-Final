@@ -75,6 +75,7 @@ class Graphics
     GLint m_skyboxPositionAttrib;
     std::vector<GLfloat> skyboxVertices;
 
+    // material properties
     float matAmbient_sun[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float matDiff_sun[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float matSpec_sun[4] = { 1.0f, 1.0f, 1.0f, 1.0f, };
