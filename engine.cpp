@@ -174,7 +174,7 @@ void Engine::ProcessInput()
         dY *= sensitivity;
 
         //rotate camera inputs if difference in mouse position detected
-        if (dX != 0.0 || dY != 0.0) {
+        if ((dX != 0.0 || dY != 0.0) && !orbiting) {
             m_graphics->getCamera()->Rotate(dX, dY, 0.f);
         }
     }

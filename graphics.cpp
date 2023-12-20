@@ -192,6 +192,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	if (m_comet != NULL) {
 		m_comet->Update(localTransform);
 	}
+	planetLoc[11] = glm::vec3(m_comet->GetModel()[3]);
 	modelStack.pop();	// back to the sun coordinates
 
 	// position of mercury
@@ -396,7 +397,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	
 	if (orbiting) {
 		speed = { 0.5f, 0.5f, 0.5f };
-		glm::vec3 dists[11] = { {3.5f, 0.0f, 3.5f},
+		glm::vec3 dists[12] = { {3.5f, 0.0f, 3.5f},
 								{1.0f, 0.0f, 1.0f},
 								{1.5f, 0.0f, 1.5f},
 								{1.5f, 0.0f, 1.5f},
@@ -406,7 +407,8 @@ void Graphics::HierarchicalUpdate2(double dt) {
 								{2.0f, 0.0f, 2.0f},
 								{2.0f, 0.0f, 2.0f},
 								{2.0f, 0.0f, 2.0f},
-								{2.0f, 0.0f, 2.0f} };
+								{2.0f, 0.0f, 2.0f}, 
+								{1.0f, 0.0f, 1.0f} };
 		glm::vec3 target = planetLoc[orbitIndex];
 		glm::vec3 cam = target + glm::vec3(-cos(speed[0] * dt) * dists[orbitIndex][0], sin(speed[1] * dt) * dists[orbitIndex][1], sin(speed[2] * dt) * dists[orbitIndex][2]);
 		m_camera->SetView(glm::lookAt(cam, target, glm::vec3(0.f, 1.f, 0.f)));
@@ -1054,10 +1056,10 @@ void Graphics::ToggleOrbit(bool orb)
 {
 	orbiting = orb;
 	glm::vec3 shipCoord = m_camera->GetPosition();
-
+	
 	float min = glm::distance(shipCoord, planetLoc[0]);
 	orbitIndex = 0;
-	for (int i = 1; i < 11; i++)
+	for (int i = 1; i < 12; i++)
 	{
 		float dist = glm::distance(shipCoord, planetLoc[i]);
 		if (min > dist)

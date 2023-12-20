@@ -128,9 +128,9 @@ class Graphics
     Light* m_light;
 
     bool thirdPer = false;
-    bool orbitIndex = -1;
     bool orbiting = false;
-    glm::vec3 planetLoc[11];
+    int orbitIndex = -1;
+    glm::vec3 planetLoc[12];
 };
 
 #endif /* GRAPHICS_H */
