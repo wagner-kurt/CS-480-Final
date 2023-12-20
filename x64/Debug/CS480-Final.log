@@ -1,12 +1,23 @@
-﻿  camera.cpp
-C:\Users\Chewd\Desktop\CS480-Final\camera.cpp(83,12): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Chewd\Desktop\CS480-Final\camera.cpp(84,14): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Chewd\Desktop\CS480-Final\camera.cpp(85,13): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  engine.cpp
-C:\Users\Chewd\Desktop\CS480-Final\engine.cpp(193,23): warning C4244: 'return': conversion from 'double' to 'unsigned int', possible loss of data
+﻿  engine.cpp
+C:\Users\Chewd\Desktop\CS480-Final\engine.cpp(195,23): warning C4244: 'return': conversion from 'double' to 'unsigned int', possible loss of data
   graphics.cpp
-C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(381,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(381,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,15): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,15): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,15): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,15): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,15): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,20): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,20): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,20): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,20): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,20): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,25): warning C4305: 'initializing': truncation from 'double' to '_Ty'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,25): warning C4305:         with
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,25): warning C4305:         [
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,25): warning C4305:             _Ty=float
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(181,25): warning C4305:         ]
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(427,25): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Users\Chewd\Desktop\CS480-Final\graphics.cpp(427,20): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
   main.cpp
   Generating Code...
   CS480-Final.vcxproj -> C:\Users\Chewd\Desktop\CS480-Final\x64\Debug\CS480-Final.exe

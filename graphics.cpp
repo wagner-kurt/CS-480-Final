@@ -56,10 +56,21 @@ bool Graphics::Initialize(int width, int height)
 		return false;
 	}
 
+	m_skyboxshader = new SkyboxShader();
+	if (!m_skyboxshader->Initialize()) {
+		printf("Skybox shader failed to initialize\n");
+		return false;
+	}
+
 	// Add the vertex shader
 	if (!m_shader->AddShader(GL_VERTEX_SHADER))
 	{
 		printf("Vertex Shader failed to Initialize\n");
+		return false;
+	}
+
+	if (!m_skyboxshader->AddShader(GL_VERTEX_SHADER)) {
+		printf("Skybox vertex shader failed to initialize\n");
 		return false;
 	}
 
@@ -70,10 +81,20 @@ bool Graphics::Initialize(int width, int height)
 		return false;
 	}
 
+	if (!m_skyboxshader->AddShader(GL_FRAGMENT_SHADER)) {
+		printf("Skybox fragment shader failed to initialize\n");
+		return false;
+	}
+
 	// Connect the program
 	if (!m_shader->Finalize())
 	{
-		printf("Program to Finalize\n");
+		printf("Shader Failed to Finalize\n");
+		return false;
+	}
+
+	if (!m_skyboxshader->Finalize()) {
+		printf("Skybox shader failed to finalize\n");
 		return false;
 	}
 
@@ -82,11 +103,18 @@ bool Graphics::Initialize(int width, int height)
 		printf("Some shader attribs not located!\n");
 	}
 
+	cubeMapTextureID = loadCubeMap();
+	setupSkybox();
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+
 	// Starship
 	m_mesh = new Mesh(glm::vec3(2.0f, 3.0f, -5.0f), "assets\\SpaceShip-1.obj", "assets\\SpaceShip-1.png", "assets\\SpaceShip-1-n.jpg");
 
 	// The Sun
 	m_sun = new Sphere(64, "assets\\2k_sun.jpg", "assets\\2k_sun-n.jpg");
+
+	// Comet
+	m_comet = new Sphere(64, "assets\\Ceres.jpg", "assets\\Ceres-n.jpg");
 
 	// Mercury
 	m_mercury = new Sphere(64, "assets\\Mercury.jpg", "assets\\Mercury-n.jpg");
@@ -146,6 +174,24 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	m_light->m_lightPosition = glm::vec3(m_sun->GetModel()[3]);
 	m_light->Update(m_camera->GetView());
 
+	// position of comet
+	speed = { 0.5f, 0.5f, 0.5f };
+	dist = { 4.0f, 10.0f, 20.0f };
+	rotVector = { 0.,1.,0. };
+	rotSpeed = { .01, .01, .01 };
+	scale = { 0.08f, 0.08f, 0.08f };
+	localTransform = modelStack.top();				// start with sun's coordinate
+	localTransform *= glm::translate(glm::mat4(1.f),
+		glm::vec3(-cos(speed[0] * dt) * dist[0], sin(speed[1] * dt) * dist[1], sin(speed[2] * dt) * dist[2]));
+	modelStack.push(localTransform);			// store planet-sun coordinate
+	localTransform *= glm::rotate(glm::mat4(1.f), glm::radians(0.034f), glm::vec3(1.0f, 0.0f, 0.0f)); //axial tilt
+	localTransform *= glm::rotate(glm::mat4(1.f), rotSpeed[0] * (float)dt, rotVector);
+	localTransform *= glm::scale(glm::vec3(scale[0], scale[1], scale[2]));
+	if (m_comet != NULL) {
+		m_comet->Update(localTransform);
+	}
+	modelStack.pop();	// back to the sun coordinates
+
 	// position of mercury
 	speed = { 0.05f, 0.05f, 0.05f };
 	dist = { 4.0f, 0.0f, 4.0f };
@@ -200,8 +246,8 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	}
 
 	// position of the moon
-	speed = { 0.075f, 0.075f, 0.075f };
-	dist = { 2.25f, 0.25f, 2.25f }; // inclined orbit
+	speed = { 0.2f, 0.2f, 0.2f };
+	dist = { 1.5f, 0.25f, 1.5f }; // inclined orbit
 	rotVector = { 0.0, 1., 0. };
 	rotSpeed = { .25, .25, .25 };
 	scale = { 0.162f, 0.162f, 0.162f };
@@ -381,22 +427,48 @@ void Graphics::Render()
 	glClearColor(0.5, 0.2, 0.2, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Start the correct program
+	// Render skybox
+	m_skyboxshader->Enable();
+	glUniformMatrix4fv(m_skyboxProjMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+	glUniformMatrix4fv(m_skyboxViewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+	GLint skyboxSampler = m_skyboxshader->GetUniformLocation("samp");
+	if (skyboxSampler == INVALID_UNIFORM_LOCATION)
+	{
+		printf("Skybox sampler not found\n");
+	}
+	glUniform1i(skyboxSampler, 0);
+	glDepthMask(GL_FALSE);
+	glDisable(GL_DEPTH_TEST);
+	glBindVertexArray(skyboxVAO);
+	glEnableVertexAttribArray(m_skyboxPositionAttrib);
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+	glVertexAttribPointer(m_skyboxPositionAttrib, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureID);
+	glEnable(GL_CULL_FACE);
+	glFrontFace(GL_CCW);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+
+	glDisableVertexAttribArray(m_skyboxPositionAttrib);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glUseProgram(0);
+
+	// Start the shader program
 	m_shader->Enable();
 
 	// Send in the projection and view to the shader (stay the same while camera intrinsic(perspective) and extrinsic (view) parameters are the same
 	glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
 	glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
+	// Program light uniforms
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_globalAmbLoc, 1, m_light->m_globalAmbient);
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_lightALoc, 1, m_light->m_lightAmbient);
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_lightDLoc, 1, m_light->m_lightDiffuse);
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_lightSLoc, 1, m_light->m_lightSpecular);
 	glProgramUniform3fv(m_shader->GetShaderProgram(), m_lightPosLoc, 1, m_light->m_lightPositionViewSpace);
-	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient);
-	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff);
-	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec);
-	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess);
 
 	// Render the objects
 	/*if (m_cube != NULL){
@@ -406,6 +478,7 @@ void Graphics::Render()
 
 	
 	// Render Ship
+	setMaterialShip();
 	if (m_mesh != NULL) {
 		glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView() * m_mesh->GetModel())))));
 		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mesh->GetModel()));
@@ -440,6 +513,7 @@ void Graphics::Render()
 	}*/
 
 	// Render Sun
+	setMaterialSun();
 	if (m_sun != NULL) {
 		glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView() * m_sun->GetModel())))));
 		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_sun->GetModel()));
@@ -466,6 +540,37 @@ void Graphics::Render()
 		}
 		m_sun->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
 	}
+
+	// Render Comet
+	setMaterialComet();
+	if (m_comet != NULL) {
+		glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView() * m_comet->GetModel())))));
+		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_comet->GetModel()));
+		if (m_comet->hasTex) {
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, m_comet->getTextureID());
+			GLuint sampler = m_shader->GetUniformLocation("samp");
+			if (sampler == INVALID_UNIFORM_LOCATION)
+			{
+				printf("Sampler Not found not found\n");
+			}
+			glUniform1i(sampler, 0);
+			glUniform1i(hasN, false);
+		}
+		if (m_comet->hasNormal) {
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, m_comet->getNormalID());
+			GLuint sampler = m_shader->GetUniformLocation("samp1");
+			if (sampler == INVALID_UNIFORM_LOCATION) {
+				printf("Sampler not found\n");
+			}
+			glUniform1i(sampler, 1);
+			glUniform1i(hasN, true);
+		}
+		m_comet->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
+	}
+
+	setMaterialRock();
 
 	// Render Mercury
 	if (m_mercury != NULL) {
@@ -635,6 +740,8 @@ void Graphics::Render()
 		m_ceres->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
 	}
 
+	setMaterialGas();
+	
 	// Render Jupiter
 	if (m_jupiter != NULL) {
 		glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView()* m_jupiter->GetModel())))));
@@ -747,6 +854,7 @@ void Graphics::Render()
 		m_neptune->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
 	}
 
+	
 
 	// Get any errors from OpenGL
 	auto error = glGetError();
@@ -880,7 +988,24 @@ bool Graphics::collectShPrLocs() {
 		printf("MaterialShininess not found\n");
 		anyProblem = false;
 	}
-	
+
+	m_skyboxProjMatrix = m_skyboxshader->GetUniformLocation("proj_matrix");
+	if (m_skyboxProjMatrix == INVALID_UNIFORM_LOCATION) {
+		printf("skybox projmatrix not found\n");
+		anyProblem = false;
+	}
+
+	m_skyboxViewMatrix = m_skyboxshader->GetUniformLocation("v_matrix");
+	if (m_skyboxViewMatrix == INVALID_UNIFORM_LOCATION) {
+		printf("skybox vmatrix not found\n");
+		anyProblem = false;
+	}
+
+	m_skyboxPositionAttrib = m_skyboxshader->GetAttribLocation("position");
+	if (m_skyboxPositionAttrib == INVALID_UNIFORM_LOCATION) {
+		printf("skybox position not found\n");
+		anyProblem = false;
+	}
 
 	return anyProblem;
 }
@@ -921,4 +1046,121 @@ void Graphics::ToggleView(bool thrPer)
 {
 	thirdPer = thrPer;
 	m_camera->ToggleView(thrPer);
+}
+
+void Graphics::setMaterialSun() {
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient_sun);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff_sun);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec_sun);
+	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess_sun);
+}
+
+void Graphics::setMaterialComet() {
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient_comet);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff_comet);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec_comet);
+	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess_comet);
+}
+
+void Graphics::setMaterialRock() {
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient_rock);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff_rock);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec_rock);
+	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess_rock);
+}
+
+void Graphics::setMaterialGas() {
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient_gas);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff_gas);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec_gas);
+	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess_gas);
+}
+
+void Graphics::setMaterialShip() {
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mAmbLoc, 1, matAmbient_ship);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mDiffLoc, 1, matDiff_ship);
+	glProgramUniform4fv(m_shader->GetShaderProgram(), m_mSpecLoc, 1, matSpec_ship);
+	glProgramUniform1f(m_shader->GetShaderProgram(), m_mShineLoc, matShininess_ship);
+}
+
+GLuint Graphics::loadCubeMap() {
+	GLuint textureID;
+	std::string xp = "assets\\Cube-xp.jpg";
+	std::string xn = "assets\\Cube-xn.jpg";
+	std::string yp = "assets\\Cube-yp.jpg";
+	std::string yn = "assets\\Cube-yn.jpg";
+	std::string zp = "assets\\Cube-zp.jpg";
+	std::string zn = "assets\\Cube-zn.jpg";
+
+	textureID = SOIL_load_OGL_cubemap(xp.c_str(), xn.c_str(), yp.c_str(), yn.c_str(), zp.c_str(), zn.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
+	if (textureID == 0) {
+		printf("Error loading cubemap\n");
+		return -1;
+	}
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return textureID;
+}
+
+void Graphics::setupSkybox() {
+	skyboxVertices = { 
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f
+	};
+
+	glGenVertexArrays(1, &skyboxVAO);
+	glGenBuffers(1, &skyboxVBO);
+
+	glBindVertexArray(skyboxVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * skyboxVertices.size(), &skyboxVertices[0], GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
