@@ -459,6 +459,7 @@ void Graphics::HierarchicalUpdate2(double dt) {
 	}
 	
 	if (orbiting) {
+		// set camera location orbiting around planet
 		speed = { 0.5f, 0.5f, 0.5f };
 		glm::vec3 dists[12] = { {3.5f, 0.0f, 3.5f},
 								{1.0f, 0.0f, 1.0f},
@@ -526,7 +527,7 @@ void Graphics::Render()
 	// Start the shader program
 	m_shader->Enable();
 
-	// Send in the projection and view to the shader (stay the same while camera intrinsic(perspective) and extrinsic (view) parameters are the same
+	// Send in the projection and view to the shader (stay the same while camera intrinsic(perspective) and extrinsic (view) parameters are the same)
 	glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
 	glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
@@ -536,12 +537,6 @@ void Graphics::Render()
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_lightDLoc, 1, m_light->m_lightDiffuse);
 	glProgramUniform4fv(m_shader->GetShaderProgram(), m_lightSLoc, 1, m_light->m_lightSpecular);
 	glProgramUniform3fv(m_shader->GetShaderProgram(), m_lightPosLoc, 1, m_light->m_lightPositionViewSpace);
-
-	// Render the objects
-	/*if (m_cube != NULL){
-		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
-		m_cube->Render(m_positionAttrib,m_normalAttrib);
-	}*/
 
 	// Render Asteroids
 	setMaterialRock();
@@ -576,7 +571,7 @@ void Graphics::Render()
 	
 	// Render Ship
 	setMaterialShip();
-	if (m_mesh != NULL) {
+	if (m_mesh != NULL && thirdPer) {
 		glUniformMatrix4fv(m_normalMatrix, 1, GL_FALSE, glm::value_ptr(glm::inverse(glm::transpose(glm::mat3(m_camera->GetView() * m_mesh->GetModel())))));
 		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mesh->GetModel()));
 		if (m_mesh->hasTex) {
@@ -600,16 +595,8 @@ void Graphics::Render()
 			glUniform1i(sampler, 1);
 			glUniform1i(hasN, true);
 		}
-		if(thirdPer)
-			m_mesh->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
+		m_mesh->Render(m_positionAttrib, m_normalAttrib, m_tcAttrib, hasN);
 	}
-
-	/*if (m_pyramid != NULL) {
-		glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_pyramid->GetModel()));
-		m_pyramid->Render(m_positionAttrib, m_normalAttrib);
-	}*/
-
-	
 
 	// Render Sun
 	setMaterialSun();
@@ -1143,15 +1130,18 @@ std::string Graphics::ErrorString(GLenum error)
 
 void Graphics::ToggleView(bool thrPer)
 {
+	// toggle camera view
 	thirdPer = thrPer;
 	m_camera->ToggleView(thrPer);
 }
 
 void Graphics::ToggleOrbit(bool orb)
 {
+	// toggle orbiting mode
 	orbiting = orb;
 	glm::vec3 shipCoord = m_camera->GetPosition();
 	
+	// find planet with closest distance to camera
 	float min = glm::distance(shipCoord, planetLoc[0]);
 	orbitIndex = 0;
 	for (int i = 1; i < 12; i++)

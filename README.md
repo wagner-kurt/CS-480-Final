@@ -17,6 +17,7 @@
 - A - move left
 - D - move right
 - MOUSE - move camera
+- SCROLL - adjust FoV
 - LSHIFT - toggle planet panning mode
 - SPACE - switch to exploration mode
 
@@ -30,5 +31,6 @@
 - E - tilt up
 - Z - roll left
 - C - roll right
+- SCROLL - adjust FoV
 - LSHIFT - brake
 - SPACE - switch to planetary observation mode

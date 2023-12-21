@@ -65,7 +65,7 @@ void Engine::ProcessInput()
     if (glfwGetKey(m_window->getWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_window->getWindow(), true);
 
-    //Check if need to toggle third person
+    // Check if need to toggle third person
     if (glfwGetKey(m_window->getWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
     {
         if (!keyPressed)
@@ -93,11 +93,13 @@ void Engine::ProcessInput()
 
     if (thirdPerson)
     {
+        // Third person mode inputs
         float movement = 0.00025f;
         double dX = 0.f;
         double dY = 0.f;
         double tilt = 0.f;
-        //move camera inputs
+
+        // move camera inputs
         if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
             velocity += movement;
         if (glfwGetKey(m_window->getWindow(), GLFW_KEY_S) == GLFW_PRESS)
@@ -122,21 +124,24 @@ void Engine::ProcessInput()
         // Keep mouse position stored so transition is smooth
         glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
 
-        //set sensitivity here
+        // set sensitivity here
         float sensitivity = 0.5f;
         dX *= sensitivity;
         dY *= sensitivity;
         tilt *= sensitivity;
 
-        //rotate camera inputs if difference in mouse position detected
+        // rotate camera inputs if key press detected
         if (dX != 0.0 || dY != 0.0 || tilt != 0.0) {
             m_graphics->getCamera()->Rotate(dX, dY, tilt);
         }
     }
     else
     {
+        // first person mode inputs
+
         float movement = 0.025f;
-        //move camera inputs
+
+        // move camera inputs
         if (!orbiting) {
             if (glfwGetKey(m_window->getWindow(), GLFW_KEY_W) == GLFW_PRESS)
                 m_graphics->getCamera()->Move(CAM_FORWARD, movement);
@@ -148,6 +153,7 @@ void Engine::ProcessInput()
                 m_graphics->getCamera()->Move(CAM_RIGHT, movement);
         }
 
+        // toggle planet panning mode
         if (glfwGetKey(m_window->getWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
             if (orbiting && !keyPressed) {
                 m_graphics->getCamera()->Reset();
@@ -163,7 +169,7 @@ void Engine::ProcessInput()
         }
            
         // Update camera animation here.
-        //obtain and store mouse position
+        // obtain and store mouse position
         glfwGetCursorPos(m_window->getWindow(), &mouseX, &mouseY);
         double dX = -(mouseX - prevMouseX);
         double dY = mouseY - prevMouseY;
@@ -178,6 +184,7 @@ void Engine::ProcessInput()
             m_graphics->getCamera()->Rotate(dX, dY, 0.f);
         }
     }
+
     //change camera FoV from scroll wheel
     if (scrollOffset != 0.0) {
         m_graphics->getCamera()->Zoom(scrollOffset);

@@ -12,13 +12,6 @@ Camera::~Camera()
 
 bool Camera::Initialize(int w, int h)
 {
-  //--Init the view and projection matrices
-  //  if you will be having a moving camera the view matrix will need to more dynamic
-  //  ...Like you should update it before you render more dynamic 
-  //  for this project having them static will be fine
-  //view = glm::lookAt( glm::vec3(x, y, z), //Eye Position
-  //                    glm::vec3(0.0, 0.0, 0.0), //Focus point
-  //                    glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
     focalPoint = glm::vec3(0.0f, 0.0f, 0.0f);
     cameraPos = glm::vec3(0.0f, 10.0f, -16.0f);
     cameraFront = glm::normalize(-cameraPos);
@@ -33,7 +26,6 @@ bool Camera::Initialize(int w, int h)
 
     camDist = 2.5f;
 
-  //view = glm::lookAt(cameraPos, focalPoint, cameraUp);
   view = glm::lookAt(cameraPos, cameraFront + cameraPos, cameraUp);
 
   projection = glm::perspective( glm::radians(FoV), //the FoV typically 90 degrees is good which is what this is set to
@@ -42,19 +34,7 @@ bool Camera::Initialize(int w, int h)
                                  100.0f); //Distance to the far plane, 
   return true;
 }
-/*
-void Camera::Update(glm::vec3 pan) {
-    //pan camera by changing the focal point
-    focalPoint += pan;
-    view = glm::lookAt(cameraPos, focalPoint, cameraUp);
-}
 
-void Camera::Update(double dX, double dY) {
-    //rotate camera view angle, divide mouse position delta to reduce sensitivity
-    view *= glm::rotate(glm::mat4(1.0f), (float)dX / 100.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-    view *= glm::rotate(glm::mat4(1.0f), (float)dY / 100.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-}
-*/
 void Camera::Move(int direction, float velocity) {
     glm::vec3 moveVec = glm::vec3(0.0f, 0.0f, 0.0f);
     //move camera position and focal point L/R/forward/backward
@@ -93,12 +73,14 @@ void Camera::Rotate(double dX, double dY, double tilt) {
         pitch = -89.0f;
     }
 
+    // adjust front coords based on yaw and pitch
     glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(front);
 
+    // adjust cameraUp based on roll
     glm::mat4 roll_mat = glm::rotate(glm::mat4(1.0f), glm::radians(roll), cameraFront);
     cameraUp = glm::mat3(roll_mat) * glm::vec3(0.f, 1.f, 0.f);
 
@@ -146,6 +128,7 @@ void Camera::ToggleView(bool thrPer)
 {
     thirdPer = thrPer;
 
+    // update view matrix
     if (thirdPer)
         view = glm::lookAt(cameraPos - (cameraFront * camDist), cameraPos, cameraUp);
     else
